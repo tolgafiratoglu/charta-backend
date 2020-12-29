@@ -1,1 +1,1 @@
-from .buildingview import BuildingView
+from .buildingview import BuildingListView, BuildingRetrieveView

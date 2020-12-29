@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from api.models.buildingmodel import Building
 
-class BuildingListSerializer(serializers.ModelSerializer):
+class BuildingRetrieveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Building
