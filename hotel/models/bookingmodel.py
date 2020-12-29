@@ -1,6 +1,6 @@
 from django.db import models
-from api.models.visitormodel import Visitor
-from api.models.roommodel import Room
+from hotel.models.visitormodel import Visitor
+from hotel.models.roommodel import Room
 
 
 class Booking(models.Model):

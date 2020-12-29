@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from api.views.buildingview import BuildingListView, BuildingRetrieveView
+from hotel.views.buildingview import BuildingListView, BuildingRetrieveView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,

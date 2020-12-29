@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_booking_roomtype_visitor'),
+        ('hotel', '0002_booking_roomtype_visitor'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='room',
             name='room_type',
-            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, to='api.RoomType'),
+            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, to='hotel.RoomType'),
         ),
     ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.roomtypemodel import RoomType
+from hotel.models.roomtypemodel import RoomType
 
 class RoomTypeRetrieveSerializer(serializers.ModelSerializer):
 

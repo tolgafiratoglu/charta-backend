@@ -1,6 +1,6 @@
 from django.db import models
-from api.models.buildingmodel import Building
-from api.models.roomtypemodel import RoomType
+from hotel.models.buildingmodel import Building
+from hotel.models.roomtypemodel import RoomType
 
 
 class Room(models.Model):

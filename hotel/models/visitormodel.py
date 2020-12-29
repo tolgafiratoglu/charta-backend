@@ -1,5 +1,5 @@
 from django.db import models
-from api.models.roommodel import Room
+from hotel.models.roommodel import Room
 
 
 class Visitor(models.Model):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models.buildingmodel import Building
+from hotel.models.buildingmodel import Building
 
 class BuildingRetrieveSerializer(serializers.ModelSerializer):
 

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from api.models.buildingmodel import Building
-from api.models.roomtypemodel import RoomType
-from api.models.roommodel import Room
+from hotel.models.buildingmodel import Building
+from hotel.models.roomtypemodel import RoomType
+from hotel.models.roommodel import Room
 
 # Register your models here.
 admin.site.register(Building)

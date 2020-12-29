@@ -5,8 +5,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from rest_framework import generics
 
-from api.models.buildingmodel import Building
-from api.serializers.buildingserializer import BuildingRetrieveSerializer
+from hotel.models.buildingmodel import Building
+from hotel.serializers.buildingserializer import BuildingRetrieveSerializer
 
 from rest_framework.decorators import action
 
