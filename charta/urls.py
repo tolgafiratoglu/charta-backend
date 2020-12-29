@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from hotel.views.buildingview import BuildingListView, BuildingRetrieveView
+from hotel.views.roomview import RoomListView, RoomRetrieveView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -29,5 +30,7 @@ urlpatterns = [
     path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('building/list', BuildingListView.as_view()),
-    path('building/<int:pk>', BuildingRetrieveView.as_view())
+    path('building/<int:pk>', BuildingRetrieveView.as_view()),
+    path('room/list', RoomListView.as_view()),
+    path('room/<int:pk>', RoomRetrieveView.as_view())
 ]
