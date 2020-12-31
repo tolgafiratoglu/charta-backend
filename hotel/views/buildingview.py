@@ -18,7 +18,6 @@ class BuildingListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated, )
 
 class BuildingRetrieveView(generics.RetrieveAPIView):
-    #lookup_field = 'id'
     queryset = Building.objects.all()
     serializer_class = BuildingRetrieveSerializer
     permission_classes = (IsAuthenticated, )    

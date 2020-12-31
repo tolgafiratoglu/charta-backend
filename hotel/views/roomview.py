@@ -18,7 +18,6 @@ class RoomListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated, )
 
 class RoomRetrieveView(generics.RetrieveAPIView):
-    #lookup_field = 'id'
     queryset = Room.objects.all()
     serializer_class = RoomRetrieveSerializer
     permission_classes = (IsAuthenticated, )    
