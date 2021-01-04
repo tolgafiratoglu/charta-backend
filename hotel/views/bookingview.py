@@ -7,7 +7,7 @@ from rest_framework import generics
 
 from hotel.models.bookingmodel import Booking
 from hotel.serializers.bookingserializer import BookingRetrieveSerializer
-from hotel.services.bookingservice import BookService
+from hotel.services.bookingservice import BookingService
 from hotel.services.visitorservice import VisitorService
 
 from rest_framework.decorators import action
@@ -29,10 +29,12 @@ class BookingView(APIView):
         visitor_email = request.data.visitor_email
         visitor_gsm = request.data.visitor_gsm
         # Check previous bookings to see if room and dates are available
-        is_room_available = BookService.is_room_available(room, start_date, end_date)
+        is_room_available = BookingService.is_room_available(room, start_date, end_date)
         if is_room_available == True:
             # Checks the visitor name and creates if not exists:
-            
+            visitor_id = VisitorService.get_visitor(visitor_firstname, visitor_lastname, visitor_gsm, visitor_email)
             # If all fine, save the booking:
+            if visitor_id > 0:
+                BookingService.create();
         else:
             return Response({})
