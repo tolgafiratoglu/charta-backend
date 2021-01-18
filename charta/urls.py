@@ -18,6 +18,7 @@ from django.urls import path
 
 from hotel.views.buildingview import BuildingListView, BuildingRetrieveView
 from hotel.views.roomview import RoomListView, RoomRetrieveView
+from hotel.views.bookingview import BookingView
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -32,5 +33,6 @@ urlpatterns = [
     path('building/list', BuildingListView.as_view()),
     path('building/<int:pk>', BuildingRetrieveView.as_view()),
     path('room/list', RoomListView.as_view()),
-    path('room/<int:pk>', RoomRetrieveView.as_view())
+    path('room/<int:pk>', RoomRetrieveView.as_view()),
+    path('booking', BookingView.as_view())
 ]

@@ -6,7 +6,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework import generics
 
 from hotel.models.bookingmodel import Booking
-from hotel.serializers.bookingserializer import BookingRetrieveSerializer
+from hotel.serializers.bookingserializer import BookingSaveSerializer
 from hotel.services.bookingservice import BookingService
 from hotel.services.visitorservice import VisitorService
 
@@ -14,20 +14,21 @@ from rest_framework.decorators import action
 
 from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
 
 class BookingView(APIView):
     # Permission Classes:
     permission_classes = [IsAuthenticated]
     renderer_classes = [JSONRenderer]
 
-    def create(self, request, format=None):
-        room = request.data.room
-        start_date = request.data.start_date
-        end_date = request.data.end_date
-        visitor_firstname = request.data.visitor_firstname
-        visitor_lastname = request.data.visitor_lastname
-        visitor_email = request.data.visitor_email
-        visitor_gsm = request.data.visitor_gsm
+    def post(self, request, format=None):
+        room = int(request.data.get("room", 0))
+        start_date = request.data.get("start_date", "")
+        end_date = request.data.get("end_date", "")
+        visitor_firstname = request.data.get("visitor_firstname", "")
+        visitor_lastname = request.data.get("visitor_lastname", "")
+        visitor_email = request.data.get("visitor_email", "")
+        visitor_gsm = request.data.get("visitor_gsm", "")
         # Check previous bookings to see if room and dates are available
         is_room_available = BookingService.is_room_available(room, start_date, end_date)
         if is_room_available == True:
