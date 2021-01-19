@@ -33,9 +33,13 @@ class BookingView(APIView):
         is_room_available = BookingService.is_room_available(room, start_date, end_date)
         if is_room_available == True:
             # Checks the visitor name and creates if not exists:
-            visitor_id = VisitorService.get_visitor(visitor_firstname, visitor_lastname, visitor_gsm, visitor_email)
+            visitor = VisitorService.create(visitor_firstname, visitor_lastname, visitor_gsm, visitor_email)
+            return Response(visitor, 400)
             # If all fine, save the booking:
-            if visitor_id > 0:
-                BookingService.create();
+            if visitor > 0:
+                booking_id = BookingService.create(visitor, room, start_date, end_date);
+                return Response(booking_id, 200)
+            else:
+                return Response('Problem during adding the visitor', 400)
         else:
-            return Response({})
+            return Response('Not a valid room id', 400)

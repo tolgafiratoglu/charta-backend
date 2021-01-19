@@ -12,16 +12,18 @@ class VisitorService():
         return visitor
 
     @classmethod
-    def create_visitor(self, firstname, lastname, gsm, email):        
+    def create(self, firstname, lastname, gsm, email):        
         visitor_serializer = VisitorSaveSerializer(data={"gsm": gsm, "email": email, "firstname": firstname, "lastname": lastname})
         if visitor_serializer.is_valid():
-            visitor_serializer.save()
-            return serializer.data
+            visitor = visitor_serializer.save()
+            return visitor.pk
+        else:
+            return False  
 
     @classmethod
     def get_visitor(self, firstname, lastname, gsm, email):
         visitor = self.visitor_exists(gsm, email)        
-        if visitor > 0:
-            return visitor.id
+        if visitor.count() > 0:
+            return visitor.first()
         else:
-            return create_visitor(firstname, lastname, gsm, email)    
+            return self.create(firstname, lastname, gsm, email)    
