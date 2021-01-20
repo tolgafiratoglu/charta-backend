@@ -9,7 +9,9 @@ class BookingService():
         return True if count_matched == 0 else False
 
     def create(booked_by, room, settle_date, leave_date):
-        serializer = BookingSaveSerializer(data={booked_by:booked_by, room:room, settle_date:settle_date, leave_date:leave_date})
+        serializer = BookingSaveSerializer(data={"booked_by":booked_by, "room":room, "settle_date":settle_date, "leave_date":leave_date})
         if serializer.is_valid():
-            serializer.save()
-            return serializer.data.id
+            booking = serializer.save()
+            return booking.pk
+        else:
+            return False   
