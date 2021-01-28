@@ -2,9 +2,9 @@ from datetime import datetime
 from elasticsearch_dsl import Document, Date, Integer, Keyword, Text
 from elasticsearch_dsl.connections import connections
 
-connections.create_connection(hosts=['localhost'])
+connections.create_connection(hosts=['elastic:elastic@127.0.0.1'])
 
-class Booking(Document):
+class BookingDocument(Document):
     booked_by = Integer()
     room = Integer()
     settle_date = Date()
@@ -15,3 +15,6 @@ class Booking(Document):
         settings = {
           "number_of_shards": 1,
         }
+
+    def save(self, ** kwargs):
+        return super(BookingDocument, self).save(** kwargs)    
