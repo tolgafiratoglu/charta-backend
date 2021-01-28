@@ -142,3 +142,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'elastic:elastic@127.0.0.1:9200'
+    }
+}
+
+ELASTICSEARCH_DSL_INDEX_SETTINGS = {
+    'number_of_shards': 1
+}
+
+# Turn off timezone:
+USE_TZ = False
