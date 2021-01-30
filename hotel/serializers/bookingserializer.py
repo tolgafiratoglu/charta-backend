@@ -5,4 +5,4 @@ class BookingSaveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Booking
-        fields = ('booked_by', 'room', 'settle_date', 'leave_date')
+        fields = ('booked_by', 'room', 'settle_date', 'leave_date', 'number_of_visitors')

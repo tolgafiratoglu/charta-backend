@@ -27,12 +27,12 @@ class BookingService():
         return document.save()
 
     @classmethod
-    def create(self, booked_by, room, settle_date, leave_date):
-        serializer = BookingSaveSerializer(data={"booked_by":booked_by, "room":room, "settle_date":settle_date, "leave_date":leave_date})
+    def create(self, booked_by, room, settle_date, leave_date, number_of_visitors):
+        serializer = BookingSaveSerializer(data={"booked_by":booked_by, "room":room, "settle_date":settle_date, "leave_date":leave_date, "number_of_visitors": number_of_visitors})
         if serializer.is_valid():
             booking = serializer.save()
             # Document in elasticsearch:
-            self.createESDocument(id, booked_by, room, settle_date, leave_date)
+            self.createESDocument(booking.pk, booked_by, room, settle_date, leave_date)
             return booking.pk
         else:
             return False   

@@ -29,6 +29,7 @@ class BookingView(APIView):
         visitor_lastname = request.data.get("visitor_lastname", "")
         visitor_email = request.data.get("visitor_email", "")
         visitor_gsm = request.data.get("visitor_gsm", "")
+        number_of_visitors = request.data.get("number_of_visitors", 1)
         # Check previous bookings to see if room and dates are available
         is_room_available = BookingService.is_room_available(room, start_date, end_date)
         if is_room_available == True:
@@ -36,7 +37,7 @@ class BookingView(APIView):
             visitor = VisitorService.create(visitor_firstname, visitor_lastname, visitor_gsm, visitor_email)
             # If all fine, save the booking:
             if visitor > 0:
-                booking_id = BookingService.create(visitor, room, start_date, end_date)
+                booking_id = BookingService.create(visitor, room, start_date, end_date, number_of_visitors)
                 return Response(booking_id, 200)
             else:
                 return Response('Problem during adding the visitor', 400)
