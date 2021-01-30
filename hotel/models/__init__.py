@@ -2,3 +2,8 @@ from .buildingmodel import Building
 from .roommodel import Room
 from .roomtypemodel import RoomType 
 from .bookingmodel import Booking
+from .buildingmodel import Building
+from .reservationmodel import Reservation
+from .roomvisitormodel import RoomVisitor
+from .systemsettingmodel import SystemSetting
+from .visitormodel import Visitor
