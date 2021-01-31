@@ -5,10 +5,11 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from rest_framework import generics
 
-from hotel.models.bookingmodel import Booking
-from hotel.serializers.bookingserializer import BookingSaveSerializer
-from hotel.services.bookingservice import BookingService
+from hotel.models.reservationmodel import Booking
+from hotel.serializers.reservationserializer import ReservationSaveSerializer
+from hotel.services.reservationservice import ReservationService
 from hotel.services.visitorservice import VisitorService
+from hotel.services.bookingservice import BookingService
 
 from rest_framework.decorators import action
 
@@ -16,7 +17,7 @@ from rest_framework.views import APIView
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 
-class BookingView(APIView):
+class ReservationView(APIView):
     # Permission Classes:
     permission_classes = [IsAuthenticated]
     renderer_classes = [JSONRenderer]
@@ -31,15 +32,16 @@ class BookingView(APIView):
         visitor_gsm = request.data.get("visitor_gsm", "")
         number_of_visitors = request.data.get("number_of_visitors", 1)
         # Check previous bookings to see if room and dates are available
-        is_room_available = BookingService.is_room_available(room, start_date, end_date)
-        if is_room_available == True:
+        is_room_available_for_booking = BookingService.is_room_available(room, start_date, end_date)
+        is_room_available_for_reservation = ReservationService.is_room_available(room, start_date, end_date)
+        if is_room_available_for_booking == True & is_room_available_for_reservation == True:
             # Creates a new visitor row:
             visitor = VisitorService.create(visitor_firstname, visitor_lastname, visitor_gsm, visitor_email)
             # If all fine, save the booking:
             if visitor > 0:
-                booking_id = BookingService.create(visitor, room, start_date, end_date, number_of_visitors)
-                return Response(booking_id, 200)
+                reservation_id = ReservationService.create(visitor, room, start_date, end_date, number_of_visitors)
+                return Response(reservation_id, 200)
             else:
                 return Response('Problem during adding the visitor', 400)
         else:
-            return Response('Room is not available to be booked within given date range', 400)
+            return Response('Room is not available to be reserved within given date range', 400)

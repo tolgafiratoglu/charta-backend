@@ -158,8 +158,8 @@ USE_TZ = False
 
 # Initial settings:
 INITIAL_SETTINGS = {
-    "save_booking_into_elasticsearch": False,
+    "save_booking_to_elasticsearch": False,
     "list_bookings_from_elasticsearch": False,
-    "save_reservation_into_elasticsearch": False,
+    "save_reservation_to_elasticsearch": False,
     "list_reservation_from_elasticsearch": False
 }
