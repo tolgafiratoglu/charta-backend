@@ -155,3 +155,11 @@ ELASTICSEARCH_DSL_INDEX_SETTINGS = {
 
 # Turn off timezone:
 USE_TZ = False
+
+# Initial settings:
+INITIAL_SETTINGS = {
+    "insert_booking_into_elasticsearch": False,
+    "list_bookings_from_elasticsearch": False,
+    "insert_reservation_into_elasticsearch": False,
+    "list_reservation_from_elasticsearch": False
+}
