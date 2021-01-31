@@ -1,1 +1,1 @@
-from hotel.tests.unit.test_serializer import BookingSaveSerializerTestCase
+from hotel.tests.unit.test_serializer import BookingSaveSerializerTestCase, VisitorSaveSerializerTestCase
