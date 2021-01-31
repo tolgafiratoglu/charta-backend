@@ -6,6 +6,9 @@ from hotel.serializers.bookingserializer import BookingSaveSerializer
 
 from hotel.documents.booking import BookingDocument
 
+from .systemsettingservice import SystemSettingService
+from .utils.elasticservice import ElasticService
+
 from django.db.models import Q
 
 class BookingService():
@@ -36,7 +39,8 @@ class BookingService():
         if serializer.is_valid():
             booking = serializer.save()
             # Document in elasticsearch:
-            self.createESDocument(booking.pk, booked_by, room, settle_date, leave_date)
+            if ElasticService.isServiceUp() & SystemSettingService.get_setting_value("save_booking_into_elasticsearch"):
+                self.createESDocument(booking.pk, booked_by, room, settle_date, leave_date)
             return booking.pk
         else:
             return False   

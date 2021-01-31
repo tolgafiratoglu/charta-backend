@@ -145,7 +145,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'elastic:elastic@127.0.0.1:9200'
+        'hosts': 'elastic:elastic@127.0.0.1'
     }
 }
 
@@ -158,8 +158,8 @@ USE_TZ = False
 
 # Initial settings:
 INITIAL_SETTINGS = {
-    "insert_booking_into_elasticsearch": False,
+    "save_booking_into_elasticsearch": False,
     "list_bookings_from_elasticsearch": False,
-    "insert_reservation_into_elasticsearch": False,
+    "save_reservation_into_elasticsearch": False,
     "list_reservation_from_elasticsearch": False
 }
