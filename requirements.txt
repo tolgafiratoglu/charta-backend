@@ -4,3 +4,5 @@ psycopg2
 djangorestframework
 djangorestframework-simplejwt
 django-cors-headers
+elasticsearch
+elasticsearch_dsl
