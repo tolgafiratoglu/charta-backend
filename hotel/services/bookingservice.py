@@ -1,5 +1,7 @@
 from rest_framework.views import APIView
 from hotel.models.bookingmodel import Booking
+from hotel.models.visitormodel import Visitor
+
 from hotel.serializers.bookingserializer import BookingSaveSerializer
 
 from hotel.documents.booking import BookingDocument
@@ -19,8 +21,10 @@ class BookingService():
 
     @classmethod
     def createESDocument(self, id, booked_by, room, settle_date, leave_date):
-        document = BookingDocument(meta={'id':id})
-        document.booked_by = booked_by
+        visitor_obj = Visitor.objects.filter(id=booked_by).first()
+        document = BookingDocument(meta={'id': id})
+        document.visior_id = booked_by
+        document.visitor_name = visitor_obj.firstname + ' ' + visitor_obj.lastname
         document.settle_date = settle_date
         document.leave_date = leave_date
         document.room = room
