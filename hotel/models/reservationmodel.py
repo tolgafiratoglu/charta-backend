@@ -14,5 +14,14 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted = models.BooleanField(default=False)
+    
+    def __init__(self, reserved_by, room, booking, settle_date, leave_date):
+        self.reserved_by = reserved_by
+        self.room = room
+        self.booking = booking
+        self.settle_date = settle_date
+        self.leave_date = leave_date
+    
     class Meta:
         db_table = "charta_reservation"
+

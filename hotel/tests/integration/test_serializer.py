@@ -3,7 +3,7 @@ from django.test import TestCase
 from hotel.serializers.systemsettingserializer import SystemSettingSerializer
 from hotel.serializers.visitorserializer import VisitorSaveSerializer
 
-class BookingSaveSerializerTestCase(TestCase):
+class SystemSettingSaveSerializerTestCase(TestCase):
 
     def test_booking_save_serializer(self):
         serializer = SystemSettingSerializer(data={'meta_key': 'test_setting_key', 'meta_value': True})

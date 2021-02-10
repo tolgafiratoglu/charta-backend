@@ -34,8 +34,8 @@ class ReservationService():
         return document.save()
 
     @classmethod
-    def create(self, booked_by, room, settle_date, leave_date, number_of_visitors):
-        serializer = ReservationSaveSerializer(data={"booked_by":booked_by, "room":room, "settle_date":settle_date, "leave_date":leave_date, "number_of_visitors": number_of_visitors})
+    def create(self, booked_by, room, settle_date, leave_date):
+        serializer = ReservationSaveSerializer(data={"booked_by":booked_by, "room":room, "settle_date":settle_date, "leave_date":leave_date})
         if serializer.is_valid():
             reservation = serializer.save()
             # Document in elasticsearch:
@@ -44,3 +44,14 @@ class ReservationService():
             return reservation.pk
         else:
             return False   
+
+    @staticmethod
+    def convertBookingToReservation(booking):
+        reserved_by = booking.book_by
+        room = booking.room
+        settle_date = booking.settle_date
+        leave_date = booking.leave_date
+        booking = booking.pk
+        reservation = Reservation(reserved_by, room, booking, settle_date, leave_date)
+        return reservation
+
